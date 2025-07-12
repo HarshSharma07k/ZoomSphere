@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
+    "start": "node -r dotenv/config --experimental-json-modules src/index.js",
+    "prod": "pm2 -r dotenv/config --experimental-json-modules src/index.jssrc/index.js"
+  },
+  "author": "Harsh Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "http-status": "^2.1.0",
+    "mongoose": "^8.16.3",
+    "nodemon": "^3.1.10",
+    "socket.io": "^4.8.1"
+  }
+}

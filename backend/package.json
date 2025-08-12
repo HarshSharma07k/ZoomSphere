@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
     "start": "node -r dotenv/config --experimental-json-modules src/index.js",
-    "prod": "pm2 -r dotenv/config --experimental-json-modules src/index.jssrc/index.js"
+    "prod": "pm2 -r dotenv/config --experimental-json-modules src/index.js"
   },
   "author": "Harsh Sharma",
   "license": "ISC",

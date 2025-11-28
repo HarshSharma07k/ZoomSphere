@@ -1,6 +1,6 @@
 let IS_PROD = true;
 const server = IS_PROD ?
-    "https://ZoomSphere.onrender.com" :
+    "https://zoomsphere-backend.onrender.com" :
 
     "http://localhost:8000"
 

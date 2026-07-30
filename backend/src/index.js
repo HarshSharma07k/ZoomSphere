@@ -1,8 +1,6 @@
 import dotenv from "dotenv";
 import { start } from "./app.js";
 
-dotenv.config({
-    path: '../.env'
-})
+dotenv.config();
 
 await start();

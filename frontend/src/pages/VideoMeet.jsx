@@ -54,6 +54,8 @@ export default function VideoMeetComponent() {
 
     let [username, setUsername] = useState("");
 
+    let [roomError, setRoomError] = useState("");
+
     const videoRef = useRef([])
 
     let [videos, setVideos] = useState([])
@@ -67,8 +69,7 @@ export default function VideoMeetComponent() {
     useEffect(() => {
         console.log("HELLO")
         getPermissions();
-
-    })
+    }, [])
 
     let getDislayMedia = () => {
         if (screen) {
@@ -278,7 +279,18 @@ export default function VideoMeetComponent() {
 
         socketRef.current.on('signal', gotMessageFromServer)
 
+        socketRef.current.on('room-full', ({ limit, currentCount }) => {
+            setRoomError(`This room is full. ${currentCount} of ${limit} seats are in use.`)
+            setAskForUsername(true)
+            setModal(true)
+
+            if (socketRef.current) {
+                socketRef.current.disconnect()
+            }
+        })
+
         socketRef.current.on('connect', () => {
+            setRoomError("")
             socketRef.current.emit('join-call', window.location.href)
             socketIdRef.current = socketRef.current.id
 
@@ -453,6 +465,8 @@ export default function VideoMeetComponent() {
 
                 <div>
 
+                    {roomError !== "" ? <div style={{ color: "#b91c1c", marginBottom: "12px" }}>{roomError}</div> : null}
+
 
                     <h2>Enter into Lobby </h2>
                     <TextField id="outlined-basic" label="Username" value={username} onChange={e => setUsername(e.target.value)} variant="outlined" />
@@ -467,6 +481,8 @@ export default function VideoMeetComponent() {
 
 
                 <div className={styles.meetVideoContainer}>
+
+                    {roomError !== "" ? <div style={{ color: "#fca5a5", marginBottom: "12px" }}>{roomError}</div> : null}
 
                     {showModal ? <div className={styles.chatRoom}>
 
